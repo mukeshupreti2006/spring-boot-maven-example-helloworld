@@ -2,18 +2,17 @@ package com.javabycode.springboot;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 public class HelloWorldController {
+    @RequestMapping(value="/employee/{id}",method= RequestMethod.GET)
+    public String getEmployee(@PathVariable String id) {
+        return " I am first Employee";
+    }
+
     @RequestMapping("/hello")
-    public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
-        
-        String message="You just create Spring Boot Example successfully";
-        model.addAttribute("name", name);
-        model.addAttribute("message", message);
-        
-        return "hello";
+    public String index() {
+        return "Spring Boot Example";
     }
 }
